@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart AI Tools | Free Online Tools</title>
+<meta name="description" content="Free online image compressor, image resizer, word counter, text cleaner and AI prompt generator.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#111127">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#101020;color:#f5f4ff;line-height:1.6}
+header{padding:18px 6%;background:#17172d;border-bottom:1px solid #33334e;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.logo{font-size:22px;font-weight:bold;color:#b9a5ff}
+nav a{color:#ddd;text-decoration:none;margin:0 8px}
+.hero{text-align:center;padding:65px 18px 45px}
+.hero h1{font-size:clamp(34px,6vw,58px);line-height:1.1;margin:15px 0}
+.hero h1 span{color:#a995ff}
+.hero p{color:#b6b6d0;max-width:650px;margin:15px auto}
+main{max-width:1100px;margin:auto;padding:20px}
+section{padding:25px 0;scroll-margin-top:15px}
+h2{font-size:28px;margin-bottom:5px}
+.sub{color:#aaaac6;margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.card{background:#19192e;border:1px solid #33334e;border-radius:16px;padding:20px;min-width:0}
+.card h3{margin:8px 0}
+.card p{color:#b4b4cc;font-size:14px}
+input,textarea,select{width:100%;padding:12px;margin:7px 0;background:#101020;border:1px solid #42425e;color:white;border-radius:9px;font:inherit}
+textarea{min-height:100px;resize:vertical}
+button,.btn{display:inline-block;border:0;border-radius:9px;padding:11px 15px;background:#a995ff;color:#151329;font-weight:bold;cursor:pointer;text-decoration:none;margin:4px 3px 4px 0}
+button:hover,.btn:hover{filter:brightness(1.1)}
+.secondary{background:#30304c;color:white}
+.output{background:#101020;border:1px dashed #48486b;border-radius:9px;padding:12px;margin-top:10px;white-space:pre-wrap;overflow-wrap:anywhere;min-height:42px}
+.note{font-size:13px;color:#a9a9c4}
+footer{text-align:center;padding:30px 15px;color:#aaaac6;border-top:1px solid #33334e;margin-top:35px}
+@media(max-width:600px){header{align-items:flex-start;flex-direction:column}nav a{margin:0 12px 0 0}.hero{padding-top:45px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">✦ Smart AI Tools</div>
+  <nav>
+    <a href="#prompts">Prompts</a>
+    <a href="#images">Images</a>
+    <a href="#text">Text Tools</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div>YOUR FREE ONLINE TOOLKIT</div>
+  <h1>Work smarter with <span>Smart AI Tools</span></h1>
+  <p>Resize images, compress photos, count words, clean text and create structured prompts in one place.</p>
+  <a class="btn" href="#images">Explore Tools</a>
+</div>
+
+<main>
+<section id="prompts">
+  <h2>AI Prompt Generator</h2>
+  <p class="sub">Create a structured prompt from your idea.</p>
+  <div class="card">
+    <label for="idea">Describe your idea</label>
+    <textarea id="idea" placeholder="Example: Create a professional logo for a clothing brand"></textarea>
+    <select id="kind">
+      <option>General AI prompt</option>
+      <option>AI image prompt</option>
+      <option>AI video prompt</option>
+      <option>Business marketing prompt</option>
+      <option>Coding prompt</option>
+    </select>
+    <button onclick="makePrompt()">Create Prompt</button>
+    <div class="output" id="promptOut">Your prompt will appear here.</div>
+    <button class="secondary" onclick="copyText('promptOut')">Copy Prompt</button>
+    <p class="note">This static version builds a prompt template locally. It does not call an AI model.</p>
+  </div>
+</section>
+
+<section id="images">
+  <h2>Image Tools</h2>
+  <p class="sub">Your image is processed in your browser, not uploaded to this website.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>🖼️ Image Resizer</h3>
+      <input id="resizeFile" type="file" accept="image/*">
+      <label>Width (pixels)</label>
+      <input id="width" type="number" min="1" max="6000" value="800">
+      <label>Height (pixels)</label>
+      <input id="height" type="number" min="1" max="6000" value="600">
+      <label><input id="ratio" type="checkbox" checked style="width:auto"> Keep aspect ratio</label>
+      <button onclick="resizeImage()">Resize & Download</button>
+      <div id="resizeStatus" class="output">Choose an image to begin.</div>
+    </div>
+
+    <div class="card">
+      <h3>🗜️ Image Compressor</h3>
+      <input id="compressFile" type="file" accept="image/*">
+      <label>Quality: <span id="qLabel">75%</span></label>
+      <input id="quality" type="range" min="20" max="95" value="75">
+      <select id="format">
+        <option value="image/jpeg">JPG</option>
+        <option value="image/webp">WebP</option>
+      </select>
+      <button onclick="compressImage()">Compress & Download</button>
+      <div id="compressStatus" class="output">Choose an image to begin.</div>
+    </div>
+  </div>
+</section>
+
+<section id="text">
+  <h2>Text Tools</h2>
+  <p class="sub">Useful tools for writing, study and everyday work.</p>
+  <div class="grid">
+    <div class="card">
+      <h3>🔢 Word Counter</h3>
+      <textarea id="countInput" placeholder="Type or paste your text..." oninput="countWords()"></textarea>
+      <div class="output" id="countOutput">Words: 0 | Characters: 0</div>
+    </div>
+
+    <div class="card">
+      <h3>🔠 Text Case Converter</h3>
+      <textarea id="caseInput" placeholder="Enter text here..."></textarea>
+      <button onclick="convertCase('upper')">UPPERCASE</button>
+      <button onclick="convertCase('lower')">lowercase</button>
+      <button onclick="convertCase('title')">Title Case</button>
+      <div id="caseOutput" class="output">Converted text appears here.</div>
+      <button class="secondary" onclick="copyText('caseOutput')">Copy Result</button>
+    </div>
+
+    <div class="card">
+      <h3>🧹 Text Cleaner</h3>
+      <textarea id="cleanInput" placeholder="Paste text with extra spaces..."></textarea>
+      <button onclick="cleanText()">Clean Text</button>
+      <div id="cleanOutput" class="output">Cleaned text appears here.</div>
+      <button class="secondary" onclick="copyText('cleanOutput')">Copy Result</button>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Frequently Asked Questions</h2>
+  <div class="card">
+    <h3>Are these tools free?</h3>
+    <p>Image and text tools run in your browser and do not need an AI API key.</p>
+    <h3>Does this website provide real AI chat?</h3>
+    <p>Not in this static version. Real AI chat requires a secure backend and an AI provider API.</p>
+    <h3>Will Google send visitors automatically?</h3>
+    <p>No. You must publish the site, submit it to Google Search Console and create useful content. Rankings are not guaranteed.</p>
+  </div>
+</section>
+</main>
+
+<footer>© <span id="year"></span> Smart AI Tools | Useful tools for everyday work</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+$("year").textContent = new Date().getFullYear();
+
+function makePrompt(){
+  const idea=$("idea").value.trim();
+  if(!idea){alert("Please enter your idea first.");return;}
+  const kind=$("kind").value;
+  $("promptOut").textContent=
+    "Act as an expert in "+kind+".\n\n"+
+    "Task: "+idea+"\n\n"+
+    "Instructions:\n"+
+    "1. Understand the goal and intended audience.\n"+
+    "2. Provide a clear, detailed and practical result.\n"+
+    "3. Use professional language and a logical structure.\n"+
+    "4. Include relevant details and avoid unnecessary filler.\n"+
+    "5. If important information is missing, ask clarifying questions.\n\n"+
+    "Output format: Present the final result in a well-organized format.";
+}
+
+async function copyText(id){
+  const text=$(id).textContent;
+  try{await navigator.clipboard.writeText(text);alert("Copied!");}
+  catch(e){alert("Select the text and copy it manually.");}
+}
+
+function loadImage(file){
+  return new Promise((resolve,reject)=>{
+    if(!file || !file.type.startsWith("image/")){
+      reject(new Error("Please select a valid image."));return;
+    }
+    const url=URL.createObjectURL(file),img=new Image();
+    img.onload=()=>{URL.revokeObjectURL(url);resolve(img);};
+    img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("Could not read image."));};
+    img.src=url;
+  });
+}
+
+function canvasBlob(canvas,type,quality){
+  return new Promise((resolve,reject)=>{
+    canvas.toBlob(blob=>blob?resolve(blob):reject(new Error("Image conversion failed.")),type,quality);
+  });
+}
+
+function downloadBlob(blob,name){
+  const url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download=name;a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+
+async function resizeImage(){
+  try{
+    const img=await loadImage($("resizeFile").files[0]);
+    let w=Number($("width").value),h=Number($("height").value);
+    if(!Number.isInteger(w)||!Number.isInteger(h)||w<1||h<1||w>6000||h>6000)
+      throw new Error("Width and height must be between 1 and 6000.");
+    if($("ratio").checked){
+      const r=img.naturalWidth/img.naturalHeight;
+      if(w/h>r)w=Math.round(h*r);else h=Math.round(w/r);
+    }
+    const c=document.createElement("canvas");c.width=w;c.height=h;
+    c.getContext("2d").drawImage(img,0,0,w,h);
+    downloadBlob(await canvasBlob(c,"image/png"),"resized-image.png");
+    $("resizeStatus").textContent="Done: "+w+" × "+h+" pixels.";
+  }catch(e){$("resizeStatus").textContent=e.message;}
+}
+
+$("quality").oninput=()=>{$("qLabel").textContent=$("quality").value+"%";};
+
+async function compressImage(){
+  try{
+    const file=$("compressFile").files[0],img=await loadImage(file);
+    const c=document.createElement("canvas");
+    c.width=img.naturalWidth;c.height=img.naturalHeight;
+    c.getContext("2d").drawImage(img,0,0);
+    const type=$("format").value;
+    const blob=await canvasBlob(c,type,Number($("quality").value)/100);
+    downloadBlob(blob,type==="image/webp"?"compressed-image.webp":"compressed-image.jpg");
+    $("compressStatus").textContent=
+      "Original: "+(file.size/1024).toFixed(1)+" KB | Output: "+(blob.size/1024).toFixed(1)+" KB";
+  }catch(e){$("compressStatus").textContent=e.message;}
+}
+
+function countWords(){
+  const t=$("countInput").value;
+  const words=t.trim()?t.trim().split(/\s+/u).length:0;
+  $("countOutput").textContent=
+    "Words: "+words+
+    " | Characters: "+t.length+
+    " | Without spaces: "+t.replace(/\s/g,"").length;
+}
+
+function convertCase(mode){
+  let t=$("caseInput").value,out=t;
+  if(mode==="upper")out=t.toUpperCase();
+  if(mode==="lower")out=t.toLowerCase();
+  if(mode==="title")out=t.toLowerCase().replace(/\b\p{L}/gu,s=>s.toUpperCase());
+  $("caseOutput").textContent=out;
+}
+
+function cleanText(){
+  $("cleanOutput").textContent=$("cleanInput").value
+    .split("\n").map(line=>line.replace(/[ \t]+/g," ").trim())
+    .join("\n").replace(/\n{3,}/g,"\n\n").trim();
+}
+</script>
+</body>
+</html>
